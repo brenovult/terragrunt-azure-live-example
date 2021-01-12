@@ -1,0 +1,5 @@
+{
+	"name": "terragrunt-azure-live-example",
+	"context": "../",
+	"dockerFile": "./Dockerfile",
+}

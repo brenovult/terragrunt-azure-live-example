@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  terragrunt-azure-live-example:
+    image: terragrunt-azure-live-example:latest
+    build:
+      context: .
+    stdin_open: true
+    tty: true
