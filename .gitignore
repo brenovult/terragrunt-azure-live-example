@@ -1,0 +1,6 @@
+# git
+**/.git
+
+# terragrunt
+**/.terragrunt-cache
+**/backend.tf

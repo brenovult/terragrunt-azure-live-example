@@ -6,3 +6,4 @@ Reference repository for enterprise grade infrastructure as code with Terragrunt
 - `make devcontainer`
 - `make run`
 - `make down`
+- `make fmt`

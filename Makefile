@@ -1,5 +1,5 @@
 build:
-	docker-compose build terragrunt-azure-live-example
+	docker-compose -f docker-compose.yml build
 
 devcontainer:
 	docker build -t terragrunt-azure-live-example:devcontainer -f .devcontainer/Dockerfile .devcontainer
@@ -9,3 +9,6 @@ run:
 
 down:
 	docker-compose -f docker-compose.yml down
+
+fmt:
+	terraform fmt -recursive && terragrunt hclfmt -recursive
