@@ -7,6 +7,9 @@ devcontainer:
 run:
 	docker-compose -f docker-compose.yml run terragrunt-azure-live-example
 
+run-k8s:
+	docker-compose -f docker-compose.yml -f docker-compose.override.yml run terragrunt-azure-live-example
+
 down:
 	docker-compose -f docker-compose.yml down
 

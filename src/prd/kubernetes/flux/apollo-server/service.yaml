@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apollo-server
+  namespace: linuxcaveprd-scratch
+spec:
+  ports:
+  - name: "4000"
+    port: 4000
+  type: ClusterIP
+  selector:
+    service: apollo-server

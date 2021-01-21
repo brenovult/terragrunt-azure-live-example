@@ -1,0 +1,9 @@
+# Default values for flux
+
+# See flux Helm documentation to learn more:
+# https://github.com/fluxcd/flux/tree/master/chart/flux
+
+git:
+  branch: main
+  path: src/prd/kubernetes/flux/
+  pollInterval: 1m

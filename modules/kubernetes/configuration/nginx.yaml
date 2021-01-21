@@ -1,0 +1,26 @@
+# Default values for nginx-ingress
+
+# See nginx-ingress Helm documentation to learn more:
+# https://github.com/helm/charts/tree/master/stable/nginx-ingress
+# https://github.com/kubernetes/ingress-nginx/tree/master/charts/ingress-nginx
+controller:
+  config:
+    # Security Headers
+    # https://detectify.com/
+    http-snippet: |
+      more_clear_headers "Server";
+      more_set_headers "X-Frame-Options: DENY";
+      more_set_headers "X-XSS-Protection: 1; mode=block";
+      more_set_headers "X-Content-Type-Options: nosniff";
+      more_set_headers "Referrer-Policy: origin-when-cross-origin";
+    # Mozilla SSL Configuration Generator
+    # https://ssl-config.mozilla.org/#server=nginx&version=1.17.7&config=intermediate&openssl=1.1.1d&guideline=5.6
+    ssl-ciphers: ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+  service:
+    loadBalancerIP: ${loadBalancerIP}
+    annotations:
+      service.beta.kubernetes.io/azure-load-balancer-resource-group: ${loadBalancerResourceGroup}
+  podAnnotations:
+    # Datadog log collection 
+    # https://docs.datadoghq.com/integrations/nginx_ingress_controller/#log-collection
+    ad.datadoghq.com/nginx-ingress-controller.logs: '[{"service": "controller", "source":"nginx-ingress-controller"}]'

@@ -1,0 +1,34 @@
+# Default value overrides for datadog-agent
+
+# See datadog-agent Helm documentation to learn more:
+# https://docs.datadoghq.com/agent/kubernetes/helm/
+# https://github.com/helm/charts/tree/master/stable/datadog
+
+datadog:
+  clusterName: ${clusterName}
+  collectEvents: true
+  leaderElection: true
+  logs:
+    enabled: true
+    containerCollectAll: true
+    containerCollectUsingFiles: true
+  podLabelsAsTags:
+    "*": "%%label%%"
+  containerExclude: "image:datadog/.* image:mcr.microsoft.com/.*"
+  containerExcludeLogs: "image:quay.io/coreos/kube-state-metrics image:docker.io/fluxcd/flux"
+  env:
+    # Fixes: https://github.com/DataDog/integrations-core/issues/2582
+    - name: DD_KUBELET_TLS_VERIFY
+      value: "false"
+  apm:
+    enabled: true
+  clusterChecks:
+    enabled: true
+clusterAgent:
+  enabled: true
+  rbac:
+    create: false
+agents:
+  enabled: true
+  rbac:
+    create: false
