@@ -1,0 +1,15 @@
+trigger:
+  batch: true
+
+jobs:
+  - job: container_job
+    displayName: Container Job
+    pool:
+      name: Azure Pipelines
+      vmImage: ubuntu-18.04
+    container:
+      image: terragrunt-azure-live-example:azure-pipelines
+      endpoint: linuxcave_acr
+    steps:
+      - script: echo hello
+      - script: echo world
