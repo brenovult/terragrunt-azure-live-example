@@ -3,6 +3,15 @@ trigger:
 
 variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
+  - group: azurerm
+    # ARM_STORAGE_ACCOUNT_NAME
+    # ARM_ACCESS_KEY
+    # ARM_STORAGE_ACCOUNT_CONTAINER
+  - group: linuxcave-prd
+    # ARM_CLIENT_ID
+    # ARM_CLIENT_SECRET
+    # ARM_SUBSCRIPTION_ID
+    # ARM_TENANT_ID
 
 jobs:
   - job: container_job
@@ -17,7 +26,11 @@ jobs:
       - bash: terragrunt plan
         workingDirectory: src/prd/kubernetes/upstream
         displayName: Terragrunt Plan
-      - bash: terragrunt apply
-        workingDirectory: src/prd/kubernetes/upstream
-        displayName: Terragrunt Apply
-        condition: eq(variables.isMain, true)
+        env:
+          ARM_STORAGE_ACCOUNT_NAME: $(ARM_STORAGE_ACCOUNT_NAME)
+          ARM_ACCESS_KEY: $(ARM_ACCESS_KEY)
+          ARM_STORAGE_ACCOUNT_CONTAINER: $(ARM_STORAGE_ACCOUNT_CONTAINER)
+          ARM_CLIENT_ID: $(ARM_CLIENT_ID)
+          ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+          ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
+          ARM_TENANT_ID: $(ARM_TENANT_ID)
