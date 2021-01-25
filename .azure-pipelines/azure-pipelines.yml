@@ -1,0 +1,29 @@
+trigger:
+  batch: true
+
+variables:
+  - group: linuxcave-acr
+    # DOCKER_REGISTRY
+    # DOCKER_USERNAME
+    # DOCKER_PASSWORD
+
+jobs:
+  - job: build_docker_images
+    displayName: Build Docker Images
+    pool:
+      name: Azure Pipelines
+      vmImage: ubuntu-18.04
+    steps:
+        # Docker Login
+      - bash: echo ${DOCKER_PASSWORD} | docker login ${DOCKER_REGISTRY} -u ${DOCKER_USERNAME} --password-stdin
+        displayName: Docker Login
+        env:
+          DOCKER_REGISTRY: $(DOCKER_REGISTRY)
+          DOCKER_USERNAME: $(DOCKER_USERNAME)
+          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
+      - bash: make azure-pipelines
+        displayName: Docker Build
+      - bash: docker tag terragrunt-azure-live-example:azure-pipelines ${DOCKER_REGISTRY}/terragrunt-azure-live-example:azure-pipelines
+        displayName: Docker Tag
+      - bash: docker push ${DOCKER_REGISTRY}/terragrunt-azure-live-example:azure-pipelines
+        displayName: Docker Push
