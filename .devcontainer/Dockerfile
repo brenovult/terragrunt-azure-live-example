@@ -1,5 +1,4 @@
-# Alpine - https://hub.docker.com/_/alpine
-FROM alpine:3.12
+FROM terragrunt-azure-live-example:azure-pipelines
 RUN apk add --update --no-cache
 
 # Terraform - https://releases.hashicorp.com/terraform/

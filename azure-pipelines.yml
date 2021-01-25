@@ -11,9 +11,13 @@ jobs:
       name: Azure Pipelines
       vmImage: ubuntu-18.04
     container:
-      image: terragrunt-azure-live-example:azure-pipelines
+      image: terragrunt-azure-live-example:latest
       endpoint: linuxcave_acr
     steps:
-      - bash: echo hello
-      - bash: echo world
+      - bash: terragrunt plan
+        workingDirectory: src/prd/kubernetes/upstream
+        displayName: Terragrunt Plan
+      - bash: terragrunt apply
+        workingDirectory: src/prd/kubernetes/upstream
+        displayName: Terragrunt Apply
         condition: eq(variables.isMain, true)
