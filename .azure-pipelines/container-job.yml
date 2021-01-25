@@ -1,6 +1,9 @@
 trigger:
   batch: true
 
+variables:
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
+
 jobs:
   - job: container_job
     displayName: Container Job
@@ -11,5 +14,7 @@ jobs:
       image: terragrunt-azure-live-example:azure-pipelines
       endpoint: linuxcave_acr
     steps:
-      - script: echo hello
-      - script: echo world
+      - bash: echo hello
+      - bash: echo world
+        condition: eq(variables.isMain, true)
+
