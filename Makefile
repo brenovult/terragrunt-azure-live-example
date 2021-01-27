@@ -2,7 +2,10 @@ build:
 	docker-compose -f docker-compose.yml build
 
 devcontainer:
-	docker build -t terragrunt-azure-live-example:devcontainer -f .devcontainer/Dockerfile .devcontainer
+	docker build -t terragrunt-azure-live-example:devcontainer -f .devcontainer/Dockerfile .devcontainer/
+
+azure-pipelines:
+	docker build -t terragrunt-azure-live-example:azure-pipelines -f .azure-pipelines/Dockerfile .azure-pipelines/
 
 run:
 	docker-compose -f docker-compose.yml run terragrunt-azure-live-example
