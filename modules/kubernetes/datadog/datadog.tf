@@ -3,13 +3,13 @@ data "template_file" "datadog_values" {
   template = file("${path.module}/datadog.yaml")
 
   vars = {
-    clusterName = local.name
+    clusterName = var.namespace
   }
 }
 
 # https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release
 resource "helm_release" "datadog_agent" {
-  namespace = "${local.name}-system"
+  namespace = var.namespace
 
   repository = "https://helm.datadoghq.com"
   name       = "datadog-agent"

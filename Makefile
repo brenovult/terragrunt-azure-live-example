@@ -11,7 +11,10 @@ run:
 	docker-compose -f docker-compose.yml run terragrunt-azure-live-example
 
 run-k8s:
-	docker-compose -f docker-compose.yml -f docker-compose.override.yml run terragrunt-azure-live-example
+	docker-compose -f docker-compose.yml -f src/prd/kubernetes/configuration/docker-compose.override.yml run terragrunt-azure-live-example
+
+run-k8s-datadog:
+	docker-compose -f docker-compose.yml -f src/prd/kubernetes/configuration/datadog/docker-compose.override.yml run terragrunt-azure-live-example
 
 down:
 	docker-compose -f docker-compose.yml down

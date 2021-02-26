@@ -7,9 +7,6 @@ services:
     stdin_open: true
     tty: true
     environment:
-      # ------------------------------
-      # Required environment variables
-      # ------------------------------
       # Terraform remote state
       ARM_STORAGE_ACCOUNT_NAME: ${ARM_STORAGE_ACCOUNT_NAME}
       ARM_ACCESS_KEY: ${ARM_ACCESS_KEY}

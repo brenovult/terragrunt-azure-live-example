@@ -1,0 +1,5 @@
+version: '3.8'
+services:
+  terragrunt-azure-live-example:
+    environment:
+      DATADOG_API_KEY: ${DATADOG_API_KEY}

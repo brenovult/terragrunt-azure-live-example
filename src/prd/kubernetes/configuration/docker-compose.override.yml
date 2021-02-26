@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  terragrunt-azure-live-example:
+    environment:
+      GIT_AUTHUSER: ${GIT_AUTHUSER}
+      GIT_AUTHKEY: ${GIT_AUTHKEY}
+      GHCR_USER: ${GHCR_USER}
+      GHCR_PASSWORD: ${GHCR_PASSWORD}
