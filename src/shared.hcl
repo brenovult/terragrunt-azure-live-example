@@ -1,5 +1,5 @@
 locals {
-  name           = "linuxcave"
+  name           = "linuxcaveretool"
   region         = "westus2"
-  resource_group = "secops"
+  resource_group = "retool"
 }
