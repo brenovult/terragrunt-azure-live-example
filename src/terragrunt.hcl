@@ -4,6 +4,7 @@ locals {
 }
 
 remote_state {
+  # https://www.terraform.io/docs/backends/types/azurerm.html
   backend = "azurerm"
   config = {
     key                  = "${path_relative_to_include()}/terraform.tfstate"
@@ -17,7 +18,6 @@ generate "backend" {
   path      = "backend.tf"
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
-# https://www.terraform.io/docs/backends/types/azurerm.html
 terraform {
   backend "azurerm" {
     # ARM_ACCESS_KEY

@@ -1,0 +1,10 @@
+# git
+**/.git
+
+# docker
+**/docker-compose.yaml
+**/docker-compose.override.yaml
+
+# terragrunt
+**/.terragrunt-cache
+**/backend.tf

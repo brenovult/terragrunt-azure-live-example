@@ -1,8 +1,16 @@
 terraform {
-  required_version = ">= 0.12"
+  # https://releases.hashicorp.com/terraform/
+  required_version = ">= 0.14"
   required_providers {
-    helm       = ">= 1.3"
-    template   = ">= 2.2"
-    kubernetes = ">= 1.13, < 2.0.0"
+    helm = {
+      # https://github.com/hashicorp/terraform-provider-helm/releases
+      source  = "hashicorp/helm"
+      version = "=2.0.3"
+    }
+    kubernetes = {
+      # https://github.com/hashicorp/terraform-provider-kubernetes/releases
+      source  = "hashicorp/kubernetes"
+      version = ">= 1.13, < 2.0.0"
+    }
   }
 }

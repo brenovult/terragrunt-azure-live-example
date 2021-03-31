@@ -1,12 +1,3 @@
-# https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file
-data "template_file" "datadog_values" {
-  template = file("${path.module}/datadog.yaml")
-
-  vars = {
-    clusterName = var.namespace
-  }
-}
-
 # https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release
 resource "helm_release" "datadog_agent" {
   namespace = var.namespace
@@ -16,7 +7,9 @@ resource "helm_release" "datadog_agent" {
   chart      = "datadog"
 
   values = compact([
-    data.template_file.datadog_values.rendered
+    templatefile("${path.module}/datadog.yaml", {
+      clusterName = var.namespace
+    })
   ])
 
   set_sensitive {

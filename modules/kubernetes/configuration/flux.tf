@@ -1,7 +1,3 @@
-data "template_file" "flux_values" {
-  template = file("${path.module}/flux.yaml")
-}
-
 resource "helm_release" "flux" {
   namespace = kubernetes_namespace.system.id
 
@@ -9,9 +5,9 @@ resource "helm_release" "flux" {
   chart      = "flux"
   name       = "flux"
 
-  values = compact([
-    data.template_file.flux_values.rendered
-  ])
+  values = [templatefile("${path.module}/flux.yaml", {
+    branch = "main"
+  })]
 
   set_sensitive {
     name  = "git.url"

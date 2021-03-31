@@ -4,6 +4,6 @@
 # https://github.com/fluxcd/flux/tree/master/chart/flux
 
 git:
-  branch: main
+  branch: ${branch}
   path: src/prd/kubernetes/flux/
   pollInterval: 1m
