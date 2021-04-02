@@ -25,13 +25,18 @@ variable "aks_cluster_ca_certificate" {
   type        = string
 }
 
-# GitHub Container Registry
-variable "ghcr_user" {
-  description = "Username to use for GitHub Container Registry"
+variable "namespace" {
+  description = "The Kubernetes namespace"
   type        = string
 }
 
-variable "ghcr_password" {
-  description = "Password to use for GitHub Container Registry"
+# Flux
+variable "git_user" {
+  description = "Username to use for Git"
+  type        = string
+}
+
+variable "git_password" {
+  description = "Password to use for Git"
   type        = string
 }

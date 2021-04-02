@@ -16,6 +16,9 @@ run-k8s:
 run-k8s-datadog:
 	docker-compose -f docker-compose.yaml -f src/prd/kubernetes/configuration/datadog/docker-compose.override.yaml run terragrunt-azure-live-example
 
+run-k8s-flux:
+	docker-compose -f docker-compose.yaml -f src/prd/kubernetes/configuration/flux/docker-compose.override.yaml run terragrunt-azure-live-example
+
 down:
 	docker-compose -f docker-compose.yaml down
 
