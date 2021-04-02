@@ -31,8 +31,7 @@ resource "azurerm_public_ip" "aks" {
 resource "azurerm_monitor_diagnostic_setting" "ip" {
   name               = local.name
   target_resource_id = azurerm_public_ip.aks.id
-
-  log_analytics_workspace_id = var.log_analytics_workspace_id
+  storage_account_id = var.security_storage_account_id
 
   log {
     category = "DDoSProtectionNotifications"
@@ -80,11 +79,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
     kube_dashboard {
       enabled = false
     }
-
-    oms_agent {
-      enabled                    = var.aks_oms_agent_enabled
-      log_analytics_workspace_id = var.log_analytics_workspace_id
-    }
   }
 }
 
@@ -92,8 +86,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
 resource "azurerm_monitor_diagnostic_setting" "aks" {
   name               = local.name
   target_resource_id = azurerm_kubernetes_cluster.aks.id
-
-  log_analytics_workspace_id = var.log_analytics_workspace_id
+  storage_account_id = var.security_storage_account_id
 
   log {
     category = "kube-apiserver"

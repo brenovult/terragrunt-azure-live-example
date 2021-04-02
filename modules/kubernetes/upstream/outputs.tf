@@ -39,7 +39,7 @@ output "azure_region" {
 }
 
 # Security
-output "security_log_analytics_workspace_id" {
-  description = "The id of the Log Analytics Workspace for security."
-  value       = azurerm_log_analytics_workspace.security.id
+output "security_storage_account_id" {
+  description = "The id of the storage account for audit logs."
+  value       = azurerm_storage_account.security.id
 }

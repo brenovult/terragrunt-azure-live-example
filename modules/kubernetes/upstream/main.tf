@@ -104,27 +104,18 @@ resource "azurerm_role_assignment" "resources_terraform" {
 }
 
 ## Security
-
-# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace
-resource "azurerm_log_analytics_workspace" "security" {
-  name                = local.name
-  location            = local.location
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account
+resource "azurerm_storage_account" "security" {
+  name                = "${local.name}security"
   resource_group_name = azurerm_resource_group.resources.name
+  location            = local.location
 
-  sku               = "PerGB2018"
-  retention_in_days = 30
-}
-
-# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting
-resource "azurerm_monitor_diagnostic_setting" "security" {
-  name               = local.name
-  target_resource_id = azurerm_log_analytics_workspace.security.id
-
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.security.id
-
-  log {
-    category = "Audit"
-  }
+  account_tier              = "Premium"
+  account_kind              = "BlockBlobStorage"
+  account_replication_type  = "LRS"
+  allow_blob_public_access  = "true"
+  enable_https_traffic_only = "true"
+  min_tls_version           = "TLS1_2"
 }
 
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment

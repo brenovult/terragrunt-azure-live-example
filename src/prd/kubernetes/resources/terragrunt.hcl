@@ -11,10 +11,10 @@ dependency "upstream" {
 }
 
 inputs = {
-  name                       = dependency.upstream.outputs.terraform_name
-  region                     = dependency.upstream.outputs.azure_region
-  resource_group             = dependency.upstream.outputs.azure_resource_group
-  log_analytics_workspace_id = dependency.upstream.outputs.security_log_analytics_workspace_id
-  aks_client_id              = dependency.upstream.outputs.aks_client_id
-  aks_client_secret          = dependency.upstream.outputs.aks_client_secret
+  name                        = dependency.upstream.outputs.terraform_name
+  region                      = dependency.upstream.outputs.azure_region
+  resource_group              = dependency.upstream.outputs.azure_resource_group
+  security_storage_account_id = dependency.upstream.outputs.security_storage_account_id
+  aks_client_id               = dependency.upstream.outputs.aks_client_id
+  aks_client_secret           = dependency.upstream.outputs.aks_client_secret
 }

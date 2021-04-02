@@ -16,8 +16,8 @@ variable "resource_group" {
 }
 
 # Security
-variable "log_analytics_workspace_id" {
-  description = "The Log Analytics Workspace ID for security"
+variable "security_storage_account_id" {
+  description = "The id of the storage account for audit logs."
   type        = string
 }
 

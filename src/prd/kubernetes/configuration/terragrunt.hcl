@@ -24,9 +24,9 @@ dependency "resources" {
 }
 
 inputs = {
-  name                         = dependency.upstream.outputs.terraform_name
-  aks_host                     = dependency.resources.outputs.aks_host
-  aks_client_certificate       = dependency.resources.outputs.aks_client_certificate
-  aks_client_key               = dependency.resources.outputs.aks_client_key
-  aks_cluster_ca_certificate   = dependency.resources.outputs.aks_cluster_ca_certificate
+  name                       = dependency.upstream.outputs.terraform_name
+  aks_host                   = dependency.resources.outputs.aks_host
+  aks_client_certificate     = dependency.resources.outputs.aks_client_certificate
+  aks_client_key             = dependency.resources.outputs.aks_client_key
+  aks_cluster_ca_certificate = dependency.resources.outputs.aks_cluster_ca_certificate
 }
